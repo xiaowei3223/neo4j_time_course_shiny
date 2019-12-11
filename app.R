@@ -45,9 +45,9 @@ ui <- fluidPage(
                                    c("3 days" = "day3",
                                      "5 days" = "day5",
                                      "8 days" = "day8",
-                                     "only at 3 days"= "only_day3",
-                                     "only at 5 days"= "only_day5",
-                                     "only at 8 days"= "only_day8")),
+                                     "only in 3 days"= "only_day3",
+                                     "only in 5 days"= "only_day5",
+                                     "only in 8 days"= "only_day8")),
                 
                 
                 hr(), #画一条线

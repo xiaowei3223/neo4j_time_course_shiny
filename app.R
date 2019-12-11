@@ -17,7 +17,7 @@ library(shiny)
 library(visNetwork)
 #------获取pathwayTable,为了进行选择pathwayID-----------------------------
 library(RNeo4j)
-graph = startGraph("http://localhost:7474/db/data/", username="neo4j", password="xiaowei")
+graph = startGraph("http://10.168.119.229:7474/db/data/", username="neo4j", password="xiaowei")
 query_pathwayTable = " match (n:pathway) return n.Description as Pathway_Description, n.ID AS pathway_ID "
 pathwayTable <- cypher(graph, query_pathwayTable)
 pathwayTable$pathway_ID_Description <- paste0(pathwayTable$pathway_ID,": ", pathwayTable$Pathway_Description) 
@@ -173,7 +173,7 @@ server <- function(input, output) {
     #连接neo4j
     #===========================================
     library(neo4r)
-    con <- neo4j_api$new(url = "http://localhost:7474",user = "neo4j", password = "xiaowei")
+    con <- neo4j_api$new(url = "http://10.168.119.229:7474",user = "neo4j", password = "xiaowei")
     con$ping() 
     #===========================================
     #相关数据的输入

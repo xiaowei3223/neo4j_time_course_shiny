@@ -5,7 +5,7 @@ During this shiny, you can select one pathway to see genes relationships via WGC
 # How to run
 
 **step1**   
-Before you run this shiny, you need to start neo4j database and using my database, so you should ask me give you this database.  
+Before you run this shiny, you need to start neo4j database and using my database, so you need to download this [database](#).  
 Also, you should make http://localhost:7474/ as intrerface website and xiaowei as password and neo4j as username. Or not, you need to change
 my codes at connected neo4j.
 

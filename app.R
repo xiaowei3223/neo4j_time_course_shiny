@@ -44,7 +44,12 @@ ui <- fluidPage(
                 checkboxGroupInput("days", "Please choose days:",
                                    c("3 days" = "day3",
                                      "5 days" = "day5",
-                                     "8 days" = "day8")),
+                                     "8 days" = "day8",
+                                     "only at 3 days"= "only_day3",
+                                     "only at 5 days"= "only_day5",
+                                     "only at 8 days"= "only_day8")),
+                
+                
                 hr(), #画一条线
                 #设置关系中day3weight的选择
                 checkboxInput("day3Weight"," Weight in 3 days ?", FALSE),
@@ -87,7 +92,7 @@ ui <- fluidPage(
                     
                                   hr(), #画一条线
                                   #设置输出visNetwork结果
-                                  visNetworkOutput("task1_network",  height = "500px")),
+                                  visNetworkOutput("task1_network",  height = "600px")),
                           tabPanel("igraph",
                                    #设置是否需要指定一个图片布局方式
                                    checkboxInput("Select_igraph_layput", "Select igraph layout", FALSE),
@@ -114,7 +119,7 @@ ui <- fluidPage(
                                                  "greedy optimization of modularity" = "greedy_optimization_of_modularity")),
                                                
                                    #输出igraph图画
-                                   plotOutput("task1_igraph", height = "500px")
+                                   plotOutput("task1_igraph", height = "600px")
                                    )
               
               )
@@ -203,6 +208,10 @@ server <- function(input, output) {
     #这里是根据days来设置时间筛选条件
     if (length(days) == 0){dayOption = " "}
     if (length(days) ==1){
+      if (days == "only_day3"){dayOption = " and r2.relationship =~ '100' "}
+      if (days == "only_day5"){dayOption = " and r2.relationship =~ '010' "}
+      if (days == "only_day8"){dayOption = " and r2.relationship =~ '001' "}
+      
       if (days == "day3"){dayOption = " and r2.relationship =~ '1..' "}
       if (days == "day5"){dayOption = " and r2.relationship =~ '.1.' "}
       if (days == "day8"){dayOption = " and r2.relationship =~ '..1' "}

@@ -1,0 +1,4 @@
+This repository is for using in neo4j time course database.
+During this shiny, you can select one pathway to see genes relationships via WGCNA over time.
+
+Before you run this shiny, you need to start neo4j database and using my database, using http://localhost:7474/ as intrerface website and xiaowei as password and neo4j as username.

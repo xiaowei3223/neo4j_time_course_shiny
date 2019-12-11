@@ -277,6 +277,9 @@ server <- function(input, output) {
     #============================================
     
     #G <- results0
+    if (!("day3weight" %in% names(G$relationships))){G$relationships$day3weight = NA}
+    if (!("day5weight" %in% names(G$relationships))){G$relationships$day5weight = NA}
+    if (!("day5weight" %in% names(G$relationships))){G$relationships$day5weight = NA}
     G$relationships$weight <- paste0("day3weight:", G$relationships$day3Weight,
                                      "; day5weight:", G$relationships$day5Weight,
                                      "; day8weight:", G$relationships$day8Weight)

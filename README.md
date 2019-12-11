@@ -18,4 +18,4 @@ runGitHub("xiaowei3223/neo4j_time_course_shiny")
 
 # This shiny interface shows like as following:
 
-![interface_neo4j_time_course_shiny.png](./img/interface_neo4j_time_course_shiny.png)
+![interface_neo4j_time_course_shiny.png](./img/interface_neo4j_time_course_shiny.jpg)

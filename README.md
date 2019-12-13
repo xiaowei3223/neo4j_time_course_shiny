@@ -4,13 +4,13 @@ During this shiny, you can select one pathway to see genes relationships via WGC
 
 # How to run
 
-## condition1
+## condition 1
 directely run the codes if you are in our lab:
 ```
 library(shiny)
 runGitHub("xiaowei3223/neo4j_time_course_shiny")
 ```
-## condition2
+## condition 2
 If you are not in our lab, you need:
 **step1**   
 Before you run this shiny, you need to start neo4j database and using my database, so you need to download this [database](https://github.com/xiaowei3223/database/raw/master/TC_databaseV2.7z).  

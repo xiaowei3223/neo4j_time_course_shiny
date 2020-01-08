@@ -206,23 +206,46 @@ server <- function(input, output) {
     #days = c("day3", "day8")
     days = input$days #通过选择后来获取days参数
     #这里是根据days来设置时间筛选条件
-    if (length(days) == 0){dayOption = " "}
+    if (length(days) == 0){
+	dayOption = " "
+	pdayOption = " "}
     if (length(days) ==1){
-      if (days == "only_day3"){dayOption = " and r2.relationship =~ '100' "}
-      if (days == "only_day5"){dayOption = " and r2.relationship =~ '010' "}
-      if (days == "only_day8"){dayOption = " and r2.relationship =~ '001' "}
+      if (days == "only_day3"){
+	  dayOption = " and r2.relationship =~ '100' "
+	  pdayOption = " and r1.PGRType =~ '100' "}
+      if (days == "only_day5"){
+	  dayOption = " and r2.relationship =~ '010' "
+	  pdayOption = " and r1.PGRType =~ '010' "}
+      if (days == "only_day8"){
+	  dayOption = " and r2.relationship =~ '001' "
+	  pdayOption = " and r1.PGRType =~ '001' "	  }
       
-      if (days == "day3"){dayOption = " and r2.relationship =~ '1..' "}
-      if (days == "day5"){dayOption = " and r2.relationship =~ '.1.' "}
-      if (days == "day8"){dayOption = " and r2.relationship =~ '..1' "}
+      if (days == "day3"){
+	  dayOption = " and r2.relationship =~ '1..' "
+	  pdayOption = " and r1.PGRType =~ '1..' "}
+      if (days == "day5"){
+	  dayOption = " and r2.relationship =~ '.1.' "
+	  pdayOption = " and r1.PGRType =~ '.1.' "
+	  }
+      if (days == "day8"){
+	  dayOption = " and r2.relationship =~ '..1' "
+	  pdayOption = " and r1.PGRType =~ '..1' "}
     }
     if (length(days) == 2){
-      if ("day3" %in% days & "day5" %in% days){dayOption = " and r2.relationship =~ '11.' "}
-      if ("day5" %in% days & "day8" %in% days){dayOption = " and r2.relationship =~ '.11' "}
-      if ("day3" %in% days & "day8" %in% days){dayOption = " and r2.relationship =~ '1.1' "}
+      if ("day3" %in% days & "day5" %in% days){
+	  dayOption = " and r2.relationship =~ '11.' "
+	  pdayOption = " and r1.PGRType =~ '11.' "}
+      if ("day5" %in% days & "day8" %in% days){
+	  dayOption = " and r2.relationship =~ '.11' "
+	  pdayOption = " and r1.PGRType =~ '.11' "}
+      if ("day3" %in% days & "day8" %in% days){
+	  dayOption = " and r2.relationship =~ '1.1' "
+	  pdayOption = " and r1.PGRType =~ '1.1' "}
     }
     if (length(days) == 3){
-      if ("day3" %in% days & "day5" %in% days & "day8" %in% days){dayOption = " and r2.relationship =~ '111' "}
+      if ("day3" %in% days & "day5" %in% days & "day8" %in% days){
+	  dayOption = " and r2.relationship =~ '111' "
+	  pdayOption = " and r1.PGRType =~ '111' "}
     }
     #------------------------------------------------
     
@@ -232,12 +255,12 @@ server <- function(input, output) {
     
     query = paste0("
                   MATCH (A)-[r1:belong]->(pathway)
-                  where pathway.ID = ", pathwayID, 
+                  where pathway.ID = ", pathwayID, pdayOption,
                                      " with collect(distinct id(A)) AS AID
                   MATCH p = (B)-[r2:WGCNA]->(C)
                   where id(B) in AID and id(C) in AID", dayOption, day3WeightOption, day5WeightOption, day8WeightOption,
                                      "
-                  return p ")
+                  return p")
     results0 <- neo4r::call_neo4j(con, query=query,type = "graph")
     
     #===========================================
